@@ -4,8 +4,17 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { message } = req.body;
+    // Parse body
+    const body = await new Promise((resolve, reject) => {
+      let data = "";
+      req.on("data", chunk => { data += chunk; });
+      req.on("end", () => resolve(JSON.parse(data)));
+      req.on("error", reject);
+    });
 
+    const { message } = body;
+
+    // Call OpenRouter
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -14,15 +23,17 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: "z-ai/glm-4.5-air:free",
-        messages: [{ role: "assistant", content: message }],
+        messages: [{ role: "user", content: message }],
       }),
     });
 
     const data = await response.json();
+    console.log("OpenRouter response:", data); // helpful for debugging
+
     return res.status(200).json(data);
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: "Something went wrong" });
+    console.error("Server error:", err);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 }
 
