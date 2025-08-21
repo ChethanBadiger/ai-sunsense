@@ -2,12 +2,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 async function generateText() {
-    const api_key = process.env.OPENROUTER_API_KEY;
     const location = document.getElementById('addressInput').value;
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${api_key}`,
+      "Authorization": `Bearer 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`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
