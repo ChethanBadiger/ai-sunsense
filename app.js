@@ -9,9 +9,11 @@ async function generateText() {
 
   const data = await response.json();
 
-  console.log(data);
-  document.getElementById("output").value = data.choices[0].message.content;
-    if(data.err) {
+  const rawText = data.choices[0].message.content;
+  const cleanText = rawText.replace(/\*\*(.*?)\*\*/g, "$1"); 
+  console.log(cleanText);
+  document.getElementById("output").value = cleanText;
+    if(data.error) {
     document.getElementById("output").value =
       "Error: " + (data.error?.message || "Unknown error");
   }
