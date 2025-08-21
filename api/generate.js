@@ -28,8 +28,7 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    console.log("OpenRouter response:", data); // helpful for debugging
-
+    console.log("OpenRouter response:", data); 
     return res.status(200).json(data);
   } catch (err) {
     console.error("Server error:", err);

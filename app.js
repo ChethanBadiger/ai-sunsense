@@ -9,6 +9,9 @@ async function generateText() {
 
   const data = await response.json();
 
+  console.log(data);
+  
+
   if (data.choices && data.choices.length > 0) {
     document.getElementById("output").value =
       data.choices[0].message.content;
