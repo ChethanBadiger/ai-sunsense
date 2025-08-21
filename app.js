@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from "dotenv";
+dotenv.config();
 
 async function generateText() {
     const api_key = process.env.OPENROUTER_API_KEY;
