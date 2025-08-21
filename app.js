@@ -12,9 +12,9 @@ async function generateText() {
   const rawText = data.choices[0].message.content;
   const cleanText = rawText.replace(/\*\*(.*?)\*\*/g, "$1"); 
   console.log(cleanText);
-  document.getElementById("output").value = cleanText;
+  document.getElementById("output").innerText = cleanText;
     if(data.error) {
-    document.getElementById("output").value =
+    document.getElementById("output").innerText =
       "Error: " + (data.error?.message || "Unknown error");
   }
 }
