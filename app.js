@@ -11,8 +11,7 @@ async function generateText() {
 
   console.log(data);
   
-
-  if (data.choices && data.choices.length > 0) {
+  if (data.choices) {
     document.getElementById("output").value =
       data.choices[0].message.content;
   } else {
