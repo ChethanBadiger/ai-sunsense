@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 async function generateText() {
     const location = document.getElementById('addressInput').value;
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
