@@ -20,7 +20,7 @@ async function generateText() {
   if (data.choices && data.choices.length > 0) {
     const rawText = data.choices[0].message.content;
     const cleanText = rawText.replace(/\*\*(.*?)\*\*/g, "$1"); 
-    console.log(cleanText);
+    document.getElementById("output").innerText = cleanText;
   } else if (data.error) {
     console.error("API Error:", data.error.message);
   } else {
