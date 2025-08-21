@@ -10,10 +10,10 @@ async function generateText() {
   const data = await response.json();
 
   if (data.choices && data.choices.length > 0) {
-    document.getElementById("result").innerText =
+    document.getElementById("output").value =
       data.choices[0].message.content;
   } else {
-    document.getElementById("result").innerText =
+    document.getElementById("output").value =
       "Error: " + (data.error?.message || "Unknown error");
   }
 }
