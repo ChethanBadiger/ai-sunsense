@@ -15,7 +15,7 @@ async function generateText() {
   });
 
   const data = await response.json();
-  console.log("Full API response:", JSON.stringify(data, null, 2));
+//   console.log("Full API response:", JSON.stringify(data, null, 2));
 
   if (data.choices && data.choices.length > 0) {
     const rawText = data.choices[0].message.content;
